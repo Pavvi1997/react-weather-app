@@ -1,0 +1,39 @@
+@import "../../../styles/color-themes";
+@import "../../../styles/font-size";
+
+.finder,
+#search-city {
+    width: 100%;
+    display: flex;
+}
+
+.finder {
+    flex-direction: column;
+    align-items: center;
+}
+
+#search-city input {
+    width: calc(100% - 60px);
+    height: 40px;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+#search-city button {
+    height: 40px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #83d4ed;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#search-city button:hover {
+    background: #6bc9e6;
+}

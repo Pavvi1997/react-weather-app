@@ -1,0 +1,23 @@
+@import "../../../styles/color-themes";
+@import "../../../styles/font-size";
+
+.current-weather-details {
+  margin-left: 500px;
+  margin-top: -70px;
+
+  .current-weather-details-grid-item {
+    display: flex;
+    align-items: center;
+    height: 30px;
+
+    label:last-child {
+      @include theme() {
+        color: get-color("text");
+      }
+
+      font-family: "Barlow",
+      sans-serif;
+      font-size: $body2-font-size;
+    }
+  }
+}

@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The aim of the application is to find the current and all seven days forecast weather of all countries and cities.
 
-## Available Scripts
+## Technology stack
 
-In the project directory, you can run:
+The application was created making use of the [`create-react-app`](https://reactjs.org/docs/create-a-new-react-app.html) tool, thus generating a [Nextjs](https://nextjs.org) based web-app. <br/>
+That implicitly means we are building a web application using [React](https://reactjs.org).
 
-### `npm start`
+If you are unfamiliar with Nextjs, a good starting point where to start reading is [The Hitchhiker’s Guide to Next.js](https://medium.com/swlh/the-hitchhikers-guide-to-next-js-fd7aa14ae8d0). <br/>
+The article provides a conceptual overview on why and how the solution differs from other architectural implementations.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+[Typescript](https://www.typescriptlang.org) is the language used to build the application.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Unit tests are written in Typescript, using [jest](https://jestjs.io).<br/>
+Their files are colocated alongside source files.
 
-### `npm test`
+Continuous Integration and Continuous Deployment workflows run using [GitHub actions](https://github.com/features/actions).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Requirements
 
-### `npm run build`
+- [Nodejs](https://nodejs.org), version 14+
+- [Yarn](https://yarnpkg.com)
+- [Github connection through SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh) to clone the repository.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Project commands
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Project commands are found in the `scripts` section of `package.json` file.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Configuration files
 
-### `npm run eject`
+Environment variables are found in `.env`. Notice the committed `.env` is used as base and contains development environment variables. <br/>
+Their values will be overridden in CI environments with proper staging or production reference values. <br/>
+It is possible to review workflow files (found in `.github/workflows/`) describing CI and CD processes to understand which variables get overridden.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Typescript related configurations are found in `tsconfig.json`. <br/>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+GitHub actions related configurations are found in `.github/`. Automated workflows are listed and configured in `.github/workflows/`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Repository organisation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Following are the main project directories:
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- `packages/`: local packages. <br/>
+  Notice there is no mono-repository setup. Local packages are listed among third-party dependencies making use of [local paths](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#local-paths). Their dependencies are defined as `peerDependencies` and installed by the project's root `package.json` file.
+- `public/`: files served by the application as static assets.
+- `src/`: application source files and their unit tests. <br />
+  Inside this folder, files are organised following a feature-first approach.
